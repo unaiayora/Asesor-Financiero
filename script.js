@@ -68,8 +68,8 @@ if (contactoForm && contactoStatus) {
       email: String(data.get('email') || '').trim(),
       phone: String(data.get('phone') || '').trim(),
       message: String(data.get('message') || '').trim(),
-      subject: 'Nuevo contacto desde la web de Unai Ayora',
-      from_name: 'Web Unai Ayora',
+      subject: `Nuevo contacto web - ${String(data.get('name') || '').trim()}`,
+from_name: 'Unai Ayora - Asesor Financiero',
       botcheck: String(data.get('website') || '')
     };
 
