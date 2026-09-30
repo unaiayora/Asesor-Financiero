@@ -95,7 +95,14 @@ from_name: 'Unai Ayora - Asesor Financiero',
       if (!response.ok || !result.success) {
         throw new Error(result.message || 'No se pudo enviar');
       }
-
+      fetch('https://script.google.com/macros/s/AKfycbxlH68FRoH93Ty8VMSEAbq-kN3BjmrPYcVpeT4aQBSLkJ80a6Qoj06FywX42iUMkqKkIg/exec', {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: {
+    'Content-Type': 'text/plain;charset=utf-8'
+  },
+  body: JSON.stringify(payload)
+}).catch(() => {});
       contactoForm.reset();
       window.location.href = 'gracias.html';
     } catch (error) {
