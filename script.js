@@ -76,6 +76,13 @@ from_name: 'Unai Ayora - Asesor Financiero',
     if (payload.botcheck) return;
 
     delete payload.botcheck;
+    await fetch('https://script.google.com/macros/s/AKfycbxvQh1ebRreO77KcxaypGDTTpWF-6KDzsOB-kgB3D2EvcqxkNIUPC8BRhq6J9EhxfeIWA/exec', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(payload)
+});
 
     submit.disabled = true;
     contactoStatus.textContent = 'Enviando…';
