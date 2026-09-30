@@ -63,7 +63,7 @@ if (contactoForm && contactoStatus) {
     const submit = contactoForm.querySelector('button[type="submit"]');
     const data = new FormData(contactoForm);
     const payload = {
-      access_key: 'PENDIENTE_WEB3FORMS_KEY',
+      access_key: '50b51bc6-7ea2-4607-8cc9-3e31a7843fcb',
       name: String(data.get('name') || '').trim(),
       email: String(data.get('email') || '').trim(),
       phone: String(data.get('phone') || '').trim(),
