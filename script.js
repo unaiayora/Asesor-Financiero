@@ -63,15 +63,19 @@ if (contactoForm && contactoStatus) {
     const submit = contactoForm.querySelector('button[type="submit"]');
     const data = new FormData(contactoForm);
     const payload = {
-      access_key: '50b51bc6-7ea2-4607-8cc9-3e31a7843fcb',
-      name: String(data.get('name') || '').trim(),
-      email: String(data.get('email') || '').trim(),
-      phone: String(data.get('phone') || '').trim(),
-      message: String(data.get('message') || '').trim(),
-      subject: `📩 Nuevo contacto · ${String(data.get('name') || '').trim()}`,
-from_name: 'Unai Ayora | Asesor Financiero',
-    if (payload.botcheck) return;
+  access_key: '50b51bc6-7ea2-4607-8cc9-3e31a7843fcb',
+  name: String(data.get('name') || '').trim(),
+  email: String(data.get('email') || '').trim(),
+  phone: String(data.get('phone') || '').trim(),
+  message: String(data.get('message') || '').trim(),
+  subject: `📩 Nuevo contacto · ${String(data.get('name') || '').trim()}`,
+  from_name: 'Unai Ayora | Asesor Financiero',
+  botcheck: String(data.get('website') || '')
+};
 
+if (payload.botcheck) return;
+
+delete payload.botcheck;
     
 
     submit.disabled = true;
