@@ -96,7 +96,7 @@ delete payload.botcheck;
       if (!response.ok || !result.success) {
         throw new Error(result.message || 'No se pudo enviar');
       }
-      fetch('https://script.google.com/macros/s/AKfycbxlH68FRoH93Ty8VMSEAbq-kN3BjmrPYcVpeT4aQBSLkJ80a6Qoj06FywX42iUMkqKkIg/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbzxjCnV-DkT49RYWBYvoUioPKE_bt3n0Lu4FpEX61a3VwtgauSu2ksV6yY0tFyKc7AgoQ/exec', {
   method: 'POST',
   mode: 'no-cors',
   headers: {
