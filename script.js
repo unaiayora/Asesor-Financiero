@@ -82,34 +82,39 @@ delete payload.botcheck;
     contactoStatus.textContent = 'Enviando…';
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || 'No se pudo enviar');
-      }
-      fetch('https://script.google.com/macros/s/AKfycbzxjCnV-DkT49RYWBYvoUioPKE_bt3n0Lu4FpEX61a3VwtgauSu2ksV6yY0tFyKc7AgoQ/exec', {
-  method: 'POST',
-  mode: 'no-cors',
-  headers: {
-    'Content-Type': 'text/plain;charset=utf-8'
-  },
-  body: JSON.stringify(payload)
-}).catch(() => {});
-      contactoForm.reset();
-      window.location.href = 'gracias.html';
-    } catch (error) {
-      contactoStatus.textContent = 'No hemos podido enviar el mensaje. Inténtalo de nuevo en unos minutos.';
-    } finally {
-      submit.disabled = false;
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || 'No se pudo enviar');
     }
+
+    // Guardar también el contacto en Google Sheets
+    await fetch('https://script.google.com/macros/s/AKfycbzxjCnV-DkT49RYWBYvoUioPKE_bt3n0Lu4FpEX61a3VwtgauSu2ksV6yY0tFyKc7AgoQ/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    // Solo después de enviar todo correctamente
+    contactoForm.reset();
+    window.location.href = 'gracias.html';
+
+  } catch (error) {
+    contactoStatus.textContent = 'No hemos podido enviar el mensaje. Inténtalo de nuevo en unos minutos.';
+  } finally {
+    submit.disabled = false;
+  }
   });
 }
